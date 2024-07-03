@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
 
 const HeaderLogo = () => {
   return (
@@ -11,7 +11,7 @@ const HeaderLogo = () => {
         </div>
       </Link>
     </>
-  );
-};
+  )
+}
 
-export default HeaderLogo;
+export default HeaderLogo

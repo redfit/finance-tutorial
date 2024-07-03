@@ -1,8 +1,10 @@
-import HeaderLogo from "@/components/header-logo";
-import Navigation from "@/components/navigation";
-import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
-import { Loader2 } from "lucide-react";
-import WelcomeMsg from "@/components/welcome-msg";
+import { ClerkLoaded, ClerkLoading, UserButton } from '@clerk/nextjs'
+
+import { Loader2 } from 'lucide-react'
+
+import HeaderLogo from '@/components/header-logo'
+import Navigation from '@/components/navigation'
+import WelcomeMsg from '@/components/welcome-msg'
 
 const Header = () => {
   return (
@@ -25,7 +27,7 @@ const Header = () => {
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

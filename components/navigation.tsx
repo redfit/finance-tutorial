@@ -1,46 +1,49 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useMedia } from "react-use";
-import NavButton from "@/components/nav-button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { useState } from 'react'
+
+import { usePathname, useRouter } from 'next/navigation'
+
+import { Menu } from 'lucide-react'
+import { useMedia } from 'react-use'
+
+import NavButton from '@/components/nav-button'
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 const routes = [
   {
-    href: "/",
-    label: "Overview",
+    href: '/',
+    label: 'Overview',
   },
   {
-    href: "/transactions",
-    label: "Transactions",
+    href: '/transactions',
+    label: 'Transactions',
   },
   {
-    href: "/accounts",
-    label: "Accounts",
+    href: '/accounts',
+    label: 'Accounts',
   },
   {
-    href: "/categories",
-    label: "Categories",
+    href: '/categories',
+    label: 'Categories',
   },
   {
-    href: "/settings",
-    label: "Settings",
+    href: '/settings',
+    label: 'Settings',
   },
-];
+]
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
-  const isMobile = useMedia("(max-width: 1024px)", false);
+  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
+  const isMobile = useMedia('(max-width: 1024px)', false)
 
   const onClick = (href: string) => {
-    router.push(href);
-    setIsOpen(isOpen);
-  };
+    router.push(href)
+    setIsOpen(isOpen)
+  }
 
   if (isMobile) {
     return (
@@ -59,7 +62,7 @@ const Navigation = () => {
             {routes.map((route) => (
               <Button
                 key={route.href}
-                variant={route.href === pathname ? "secondary" : "ghost"}
+                variant={route.href === pathname ? 'secondary' : 'ghost'}
                 onClick={() => onClick(route.href)}
               >
                 {route.label}
@@ -68,7 +71,7 @@ const Navigation = () => {
           </nav>
         </SheetContent>
       </Sheet>
-    );
+    )
   }
 
   return (
@@ -84,7 +87,7 @@ const Navigation = () => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

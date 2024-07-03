@@ -1,11 +1,12 @@
-import { z } from "zod";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { insertAccountSchema } from "@/db/schema";
+import { insertAccountSchema } from '@/db/schema'
+
+import { Trash } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -13,19 +14,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
-const formSchema = insertAccountSchema.pick({ name: true });
+const formSchema = insertAccountSchema.pick({ name: true })
 
-type FormValues = z.input<typeof formSchema>;
+type FormValues = z.input<typeof formSchema>
 
 type Props = {
-  id?: string;
-  defaultValues?: FormValues;
-  onSubmit: (values: FormValues) => void;
-  onDelete?: () => void;
-  disabled?: boolean;
-};
+  id?: string
+  defaultValues?: FormValues
+  onSubmit: (values: FormValues) => void
+  onDelete?: () => void
+  disabled?: boolean
+}
 
 const AccountForm = ({
   id,
@@ -37,16 +39,16 @@ const AccountForm = ({
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
-  });
+  })
 
   const handleSubmit = (values: FormValues) => {
-    console.log("handleSubmit", { values });
-    onSubmit(values);
-  };
+    console.log('handleSubmit', { values })
+    onSubmit(values)
+  }
 
   const handleDelete = () => {
-    onDelete?.();
-  };
+    onDelete?.()
+  }
   return (
     <Form {...form}>
       <form
@@ -70,7 +72,7 @@ const AccountForm = ({
           )}
         />
         <Button className="w-full" disabled={disabled}>
-          {id ? "Save changes" : "Create account"}
+          {id ? 'Save changes' : 'Create account'}
         </Button>
         {!!id && (
           <Button
@@ -86,7 +88,7 @@ const AccountForm = ({
         )}
       </form>
     </Form>
-  );
-};
+  )
+}
 
-export default AccountForm;
+export default AccountForm

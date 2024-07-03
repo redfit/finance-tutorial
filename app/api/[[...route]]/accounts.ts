@@ -1,17 +1,19 @@
-import { Hono } from "hono";
-import { eq } from "drizzle-orm";
-import { db } from "@/db/drizzle";
-import { accounts, insertAccountSchema } from "@/db/schema";
-import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
-import { zValidator } from "@hono/zod-validator";
-import { createId } from "@paralleldrive/cuid2";
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
+import { zValidator } from '@hono/zod-validator'
+import { createId } from '@paralleldrive/cuid2'
+
+import { db } from '@/db/drizzle'
+import { accounts, insertAccountSchema } from '@/db/schema'
+
+import { eq } from 'drizzle-orm'
+import { Hono } from 'hono'
 
 const app = new Hono()
-  .get("/", clerkMiddleware(), async (c) => {
-    const auth = getAuth(c);
+  .get('/', clerkMiddleware(), async (c) => {
+    const auth = getAuth(c)
 
     if (!auth?.userId) {
-      return c.json({ error: "Unauthorized" }, 401);
+      return c.json({ error: 'Unauthorized' }, 401)
     }
 
     const data = await db
@@ -20,23 +22,23 @@ const app = new Hono()
         name: accounts.name,
       })
       .from(accounts)
-      .where(eq(accounts.userId, auth.userId));
-    return c.json({ data });
+      .where(eq(accounts.userId, auth.userId))
+    return c.json({ data })
   })
   .post(
-    "/",
+    '/',
     clerkMiddleware(),
     zValidator(
-      "json",
+      'json',
       insertAccountSchema.pick({
         name: true,
       }),
     ),
     async (c) => {
-      const auth = getAuth(c);
-      const values = c.req.valid("json");
+      const auth = getAuth(c)
+      const values = c.req.valid('json')
       if (!auth?.userId) {
-        return c.json({ error: "Unauthorized" }, 401);
+        return c.json({ error: 'Unauthorized' }, 401)
       }
 
       const [data] = await db
@@ -46,10 +48,10 @@ const app = new Hono()
           userId: auth.userId,
           ...values,
         })
-        .returning();
+        .returning()
 
-      return c.json({ data });
+      return c.json({ data })
     },
-  );
+  )
 
-export default app;
+export default app
