@@ -42,7 +42,7 @@ const AccountForm = ({
   })
 
   const handleSubmit = (values: FormValues) => {
-    console.log('handleSubmit', { values })
+    // console.log('handleSubmit', { values })
     onSubmit(values)
   }
 
