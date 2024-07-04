@@ -1,16 +1,16 @@
-'use client'
+"use client"
 
-import { columns } from '@/app/(dashboard)/accounts/columns'
-import { useBulkDeleteAccount } from '@/features/accounts/api/use-delete-account'
-import { useGetAccounts } from '@/features/accounts/api/use-get-accounts'
-import { useNewAccount } from '@/features/accounts/hooks/use-new-account'
+import { columns } from "@/app/(dashboard)/accounts/columns"
+import { useBulkDeleteAccount } from "@/features/accounts/api/use-bulk-delete-account"
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts"
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account"
 
-import { Loader, Loader2, Plus } from 'lucide-react'
+import { Loader, Loader2, Plus } from "lucide-react"
 
-import { DataTable } from '@/components/data-table'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+import { DataTable } from "@/components/data-table"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const AccountsPage = () => {
   const newAccount = useNewAccount()

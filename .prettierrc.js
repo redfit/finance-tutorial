@@ -1,7 +1,7 @@
 module.exports = {
   tabWidth: 2,
   semi: false,
-  singleQuote: true,
+  singleQuote: false,
   endOfLine: 'auto',
   importOrder: [
     '^(react/(.*)$)|^(react$)',

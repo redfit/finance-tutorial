@@ -1,28 +1,30 @@
-'use client'
+"use client"
 
-import { ColumnDef } from '@tanstack/react-table'
+import { ColumnDef } from "@tanstack/react-table"
 
-import { InferResponseType } from 'hono'
-import { ArrowUpDown } from 'lucide-react'
+import Actions from "@/app/(dashboard)/accounts/actions"
 
-import { client } from '@/lib/hono'
+import { InferResponseType } from "hono"
+import { ArrowUpDown } from "lucide-react"
 
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+import { client } from "@/lib/hono"
+
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 
 export type ResponseType = InferResponseType<
   typeof client.api.accounts.$get,
   200
->['data'][0]
+>["data"][0]
 
 export const columns: ColumnDef<ResponseType>[] = [
   {
-    id: 'select',
+    id: "select",
     header: ({ table }) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -39,17 +41,21 @@ export const columns: ColumnDef<ResponseType>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'name',
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <Actions id={row.original.id} />,
   },
 ]
