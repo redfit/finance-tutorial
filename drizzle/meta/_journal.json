@@ -15,6 +15,13 @@
       "when": 1719994678315,
       "tag": "0001_demonic_maria_hill",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1720077339705,
+      "tag": "0002_chief_stingray",
+      "breakpoints": true
     }
   ]
 }
