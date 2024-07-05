@@ -1,9 +1,9 @@
-import { insertAccountSchema } from '@/db/schema'
-import { useCreateAccount } from '@/features/accounts/api/use-create-account'
-import AccountForm from '@/features/accounts/components/account-form'
-import { useNewAccount } from '@/features/accounts/hooks/use-new-account'
+import { z } from "zod"
 
-import { z } from 'zod'
+import { insertAccountSchema } from "@/db/schema"
+import { useCreateAccount } from "@/features/accounts/api/use-create-account"
+import AccountForm from "@/features/accounts/components/account-form"
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account"
 
 import {
   Sheet,
@@ -11,7 +11,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from '@/components/ui/sheet'
+} from "@/components/ui/sheet"
 
 const formSchema = insertAccountSchema.pick({ name: true })
 type FormValues = z.input<typeof formSchema>
@@ -38,7 +38,7 @@ const NewAccountSheet = () => {
         <AccountForm
           onSubmit={onSubmit}
           disabled={mutation.isPaused}
-          defaultValues={{ name: '' }}
+          defaultValues={{ name: "" }}
         />
       </SheetContent>
     </Sheet>

@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { InferRequestType, InferResponseType } from "hono"
+import { toast } from "sonner"
 
-import { InferRequestType, InferResponseType } from 'hono'
-import { toast } from 'sonner'
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import { client } from '@/lib/hono'
+import { client } from "@/lib/hono"
 
 type ResponseType = InferResponseType<typeof client.api.accounts.$post>
-type RequestType = InferRequestType<typeof client.api.accounts.$post>['json']
+type RequestType = InferRequestType<typeof client.api.accounts.$post>["json"]
 
 export const useCreateAccount = () => {
   const queryClient = useQueryClient()
@@ -16,11 +16,11 @@ export const useCreateAccount = () => {
       return await response.json()
     },
     onSuccess: () => {
-      toast.success('Account created successfully')
-      queryClient.invalidateQueries({ queryKey: ['accounts'] })
+      toast.success("Account created successfully")
+      queryClient.invalidateQueries({ queryKey: ["accounts"] })
     },
     onError: () => {
-      toast.error('Error creating account')
+      toast.error("Error creating account")
     },
   })
 

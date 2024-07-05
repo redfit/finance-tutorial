@@ -1,11 +1,9 @@
 "use client"
 
-import { useDeleteAccount } from "@/features/accounts/api/use-delete-account"
-import { useOpenAccount } from "@/features/accounts/hooks/use-open-account"
-
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 
-import { useConfirm } from "@/hooks/use-confirm"
+import { useDeleteAccount } from "@/features/accounts/api/use-delete-account"
+import { useOpenAccount } from "@/features/accounts/hooks/use-open-account"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,6 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+import { useConfirm } from "@/hooks/use-confirm"
 
 type Props = {
   id: string

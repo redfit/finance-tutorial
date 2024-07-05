@@ -1,6 +1,10 @@
-'use client'
+"use client"
 
-import * as React from 'react'
+import { Button } from "./ui/button"
+
+import * as React from "react"
+
+import { Trash } from "lucide-react"
 
 import {
   ColumnDef,
@@ -13,13 +17,9 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table'
+} from "@tanstack/react-table"
 
-import { Trash } from 'lucide-react'
-
-import { useConfirm } from '@/hooks/use-confirm'
-
-import { Input } from '@/components/ui/input'
+import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -27,9 +27,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from "@/components/ui/table"
 
-import { Button } from './ui/button'
+import { useConfirm } from "@/hooks/use-confirm"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -47,8 +47,8 @@ export function DataTable<TData, TValue>({
   disabled,
 }: DataTableProps<TData, TValue>) {
   const [ConfirmDialog, confirm] = useConfirm({
-    title: 'Are you sure?',
-    message: 'You are about to perform a bulk delete.',
+    title: "Are you sure?",
+    message: "You are about to perform a bulk delete.",
   })
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilter] = React.useState<ColumnFiltersState>(
@@ -78,7 +78,7 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         <Input
           placeholder={`Filter ${filterKey}...`}
-          value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ''}
+          value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn(filterKey)?.setFilterValue(event.target.value)
           }
@@ -129,7 +129,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -156,7 +156,7 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
+          {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
         <Button

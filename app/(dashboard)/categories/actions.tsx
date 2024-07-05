@@ -1,11 +1,9 @@
 "use client"
 
-import { useDeleteCategory } from "@/features/categories/api/use-delete-category"
-import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
-
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 
-import { useConfirm } from "@/hooks/use-confirm"
+import { useDeleteCategory } from "@/features/categories/api/use-delete-category"
+import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,6 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+import { useConfirm } from "@/hooks/use-confirm"
 
 type Props = {
   id: string

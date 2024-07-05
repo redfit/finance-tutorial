@@ -1,14 +1,12 @@
-import { insertCategorySchema } from "@/db/schema"
+import { Loader2 } from "lucide-react"
+import { z } from "zod"
+
+import { insertTransactionSchema } from "@/db/schema"
 import { useDeleteCategory } from "@/features/categories/api/use-delete-category"
 import { useEditCategory } from "@/features/categories/api/use-edit-category"
 import { useGetCategory } from "@/features/categories/api/use-get-category"
 import CategoryForm from "@/features/categories/components/category-form"
 import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
-
-import { Loader2 } from "lucide-react"
-import { z } from "zod"
-
-import { useConfirm } from "@/hooks/use-confirm"
 
 import {
   Sheet,
@@ -18,7 +16,9 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 
-const formSchema = insertCategorySchema.pick({ name: true })
+import { useConfirm } from "@/hooks/use-confirm"
+
+const formSchema = insertTransactionSchema.pick({ name: true })
 type FormValues = z.input<typeof formSchema>
 
 const EditCategorySheet = () => {

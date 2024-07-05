@@ -1,11 +1,11 @@
 "use client"
 
+import { Loader, Loader2, Plus } from "lucide-react"
+
 import { columns } from "@/app/(dashboard)/categories/columns"
 import { useBulkDeleteCategories } from "@/features/categories/api/use-bulk-delete-categories"
 import { useGetCategories } from "@/features/categories/api/use-get-categories"
 import { useNewCategory } from "@/features/categories/hooks/use-new-category"
-
-import { Loader, Loader2, Plus } from "lucide-react"
 
 import { DataTable } from "@/components/data-table"
 import { Button } from "@/components/ui/button"

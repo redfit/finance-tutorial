@@ -1,12 +1,16 @@
 // In Next.js, this file would be called: app/providers.jsx
-'use client'
+"use client"
 
 // Since QueryClientProvider relies on useContext under the hood, we have to put 'use client' on top
 import {
   QueryClient,
   QueryClientProvider,
   isServer,
-} from '@tanstack/react-query'
+} from "@tanstack/react-query"
+
+// In Next.js, this file would be called: app/providers.jsx
+
+// In Next.js, this file would be called: app/providers.jsx
 
 // In Next.js, this file would be called: app/providers.jsx
 

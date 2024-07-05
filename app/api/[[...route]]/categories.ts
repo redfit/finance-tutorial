@@ -1,15 +1,15 @@
+import { and, eq, inArray } from "drizzle-orm"
+import { Hono } from "hono"
+import { id } from "postcss-selector-parser"
+import { z } from "zod"
+
 import { auth } from "@clerk/nextjs/server"
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
 import { zValidator } from "@hono/zod-validator"
 import { createId } from "@paralleldrive/cuid2"
 
 import { db } from "@/db/drizzle"
-import { categories, insertCategorySchema } from "@/db/schema"
-
-import { and, eq, inArray } from "drizzle-orm"
-import { Hono } from "hono"
-import { id } from "postcss-selector-parser"
-import { z } from "zod"
+import { categories, insertTransactionSchema } from "@/db/schema"
 
 const app = new Hono()
   .get("/", clerkMiddleware(), async (c) => {
@@ -68,7 +68,7 @@ const app = new Hono()
     clerkMiddleware(),
     zValidator(
       "json",
-      insertCategorySchema.pick({
+      insertTransactionSchema.pick({
         name: true,
       }),
     ),
@@ -133,7 +133,7 @@ const app = new Hono()
     ),
     zValidator(
       "json",
-      insertCategorySchema.pick({
+      insertTransactionSchema.pick({
         name: true,
       }),
     ),
