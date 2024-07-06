@@ -1,5 +1,6 @@
 import accounts from "./accounts"
 import categories from "./categories"
+import summaries from "./summary"
 import transactions from "./transactions"
 
 import { Hono } from "hono"
@@ -13,6 +14,7 @@ const routes = app
   .route("/accounts", accounts)
   .route("/categories", categories)
   .route("/transactions", transactions)
+  .route("/summary", summaries)
 
 export const GET = handle(app)
 export const POST = handle(app)
