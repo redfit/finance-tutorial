@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { insertTransactionSchema } from "@/db/schema"
+import { insertCategorySchema } from "@/db/schema"
 import { useCreateCategory } from "@/features/categories/api/use-create-category"
 import CategoryForm from "@/features/categories/components/category-form"
 import { useNewCategory } from "@/features/categories/hooks/use-new-category"
@@ -13,7 +13,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 
-const formSchema = insertTransactionSchema.pick({ name: true })
+const formSchema = insertCategorySchema.pick({ name: true })
 type FormValues = z.input<typeof formSchema>
 
 const NewCategorySheet = () => {
