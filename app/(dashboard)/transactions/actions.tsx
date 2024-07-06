@@ -2,8 +2,8 @@
 
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 
-import { useDeleteCategory } from "@/features/categories/api/use-delete-category"
-import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
+import { useDeleteTransaction } from "@/features/transactions/api/use-delete-transaction"
+import { useOpenTransaction } from "@/features/transactions/hooks/use-open-transaction"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -22,7 +22,7 @@ type Props = {
 const Actions = ({ id }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm({
     title: "Are you sure?",
-    message: "You are about to delete this category",
+    message: "You are about to delete this transaction",
   })
 
   const handleDelete = async () => {
@@ -33,8 +33,8 @@ const Actions = ({ id }: Props) => {
     }
   }
 
-  const deleteMutation = useDeleteCategory(id)
-  const { onOpen } = useOpenCategory()
+  const deleteMutation = useDeleteTransaction(id)
+  const { onOpen } = useOpenTransaction()
   return (
     <>
       <ConfirmDialog />

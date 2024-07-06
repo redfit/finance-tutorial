@@ -77,6 +77,7 @@ const TransactionForm = ({
   const handleDelete = () => {
     onDelete?.()
   }
+
   return (
     <Form {...form}>
       <form
@@ -174,7 +175,7 @@ const TransactionForm = ({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Payee</FormLabel>
+              <FormLabel>Notes</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}

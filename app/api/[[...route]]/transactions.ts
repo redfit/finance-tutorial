@@ -96,14 +96,14 @@ const app = new Hono()
           id: transactions.id,
           date: transactions.date,
           categoryId: transactions.categoryId,
+          amount: transactions.amount,
           payee: transactions.payee,
           notes: transactions.notes,
           accountId: transactions.accountId,
         })
         .from(transactions)
         .innerJoin(accounts, eq(transactions.accountId, accounts.id))
-        .where(and(eq(transactions.id, id), eq(accounts.id, auth.userId)))
-
+        .where(and(eq(transactions.id, id), eq(accounts.userId, auth.userId)))
       if (!data) {
         return c.json({ error: "Not found" }, 404)
       }
@@ -225,7 +225,7 @@ const app = new Hono()
     ),
     zValidator(
       "json",
-      insertTransactionSchema.pick({
+      insertTransactionSchema.omit({
         id: true,
       }),
     ),
@@ -247,11 +247,21 @@ const app = new Hono()
           .from(transactions)
           .innerJoin(accounts, eq(transactions.accountId, accounts.id))
           .where(
-            and(
-              eq(transactions.id, values.id),
-              eq(accounts.userId, auth.userId),
-            ),
+            and(eq(transactions.id, id), eq(accounts.userId, auth.userId)),
           ),
+      )
+      console.log(
+        await db
+          .with(transactionsToUpdate)
+          .update(transactions)
+          .set(values)
+          .where(
+            inArray(
+              transactions.id,
+              sql`(select id from ${transactionsToUpdate})`,
+            ),
+          )
+          .toSQL(),
       )
 
       const [data] = await db
@@ -305,7 +315,7 @@ const app = new Hono()
 
       const [data] = await db
         .with(transactionsToDelete)
-        .delete(categories)
+        .delete(transactions)
         .where(
           inArray(
             transactions.id,
