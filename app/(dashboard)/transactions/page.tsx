@@ -3,10 +3,14 @@
 import { useState } from "react"
 
 import { Loader2, Plus } from "lucide-react"
+import { toast } from "sonner"
 
 import { columns } from "@/app/(dashboard)/transactions/columns"
 import ImportCard from "@/app/(dashboard)/transactions/import-card"
 import { UploadButton } from "@/app/(dashboard)/transactions/upload-button"
+import { transactions as transactionSchema } from "@/db/schema"
+import { useSelectAccount } from "@/features/accounts/hooks/use-select-account"
+import { useBulkCreateTransactions } from "@/features/transactions/api/use-bulk-create-transactions"
 import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions"
 import { useGetTransactions } from "@/features/transactions/api/use-get-transactions"
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction"
@@ -27,6 +31,7 @@ const INITIAL_IMPORT_RESULTS = {
 }
 
 const TransactionsPage = () => {
+  const [AccountDialog, confirm] = useSelectAccount()
   const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST)
   const [importResults, setImportResults] = useState(INITIAL_IMPORT_RESULTS)
 
@@ -39,11 +44,33 @@ const TransactionsPage = () => {
   }
 
   const newTransaction = useNewTransaction()
+  const createTransactions = useBulkCreateTransactions()
   const deleteTransactions = useBulkDeleteTransactions()
   const transactionQuery = useGetTransactions()
   const transactions = transactionQuery.data || []
 
   const isDisabled = transactionQuery.isLoading || deleteTransactions.isPending
+
+  const onSubmitImport = async (
+    values: (typeof transactionSchema.$inferInsert)[],
+  ) => {
+    const accountId = await confirm()
+
+    if (!accountId) {
+      return toast.error("Please select an account to continue")
+    }
+
+    const data = values.map((value) => ({
+      ...value,
+      account: accountId,
+    }))
+
+    createTransactions.mutate(data, {
+      onSuccess: () => {
+        onCancelImport()
+      },
+    })
+  }
 
   if (transactionQuery.isLoading) {
     return (
@@ -65,7 +92,12 @@ const TransactionsPage = () => {
   if (variant === VARIANTS.IMPORT) {
     return (
       <>
-        <ImportCard onCancel={onCancelImport} onSubmit={onUpload} />
+        <AccountDialog />
+        <ImportCard
+          data={importResults.data}
+          onCancel={onCancelImport}
+          onSubmit={onSubmitImport}
+        />
       </>
     )
   }
