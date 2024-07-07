@@ -84,7 +84,10 @@ const DataCard = ({
             formattingFn={formatCurrency}
           />
         </h1>
-        <p>{formatPercentage(percentageChange)} from last period</p>
+        <p>
+          {formatPercentage(percentageChange, { addPrefix: true })} from last
+          period
+        </p>
       </CardContent>
     </Card>
   )
