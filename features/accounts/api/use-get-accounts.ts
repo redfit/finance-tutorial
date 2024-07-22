@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query"
+"use client"
 
-import app from "@/app/api/[[...route]]/accounts"
+import { useQuery } from "@tanstack/react-query"
 
 import { client } from "@/lib/hono"
 
