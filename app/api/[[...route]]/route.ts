@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server"
-
 import { Hono } from "hono"
 import { handle } from "hono/vercel"
 
