@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1721637588727,
+      "tag": "0000_living_human_torch",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1721638159033,
+      "tag": "0001_natural_sharon_carter",
+      "breakpoints": true
+    }
+  ]
+}
