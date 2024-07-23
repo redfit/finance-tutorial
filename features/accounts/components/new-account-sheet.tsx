@@ -3,7 +3,7 @@ import { z } from "zod"
 import { insertAccountSchema } from "@/db/schema"
 import { useCreateAccount } from "@/features/accounts/api/use-create-account"
 import { AccountForm } from "@/features/accounts/components/account-form"
-import { useNewAccountSheet } from "@/features/accounts/hooks/use-new-account"
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account"
 
 import {
   Sheet,
@@ -20,7 +20,7 @@ type FormValues = z.input<typeof formSchema>
 
 export const NewAccountSheet = () => {
   const mutation = useCreateAccount()
-  const { isOpen, onClose } = useNewAccountSheet()
+  const { isOpen, onClose } = useNewAccount()
   const onSubmit = (values: FormValues) => {
     mutation.mutate(values, {
       onSuccess: () => {
