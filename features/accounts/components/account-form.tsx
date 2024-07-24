@@ -76,6 +76,7 @@ export const AccountForm = ({
         </Button>
         {!!id && (
           <Button
+            type="button"
             variant="outline"
             className="w-full"
             disabled={disabled}

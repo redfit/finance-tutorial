@@ -5,6 +5,8 @@ import { ArrowUpDown } from "lucide-react"
 
 import { ColumnDef } from "@tanstack/react-table"
 
+import { Actions } from "@/app/(dashboard)/accounts/actions"
+
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 
@@ -50,4 +52,5 @@ export const columns: ColumnDef<ResponseType>[] = [
       )
     },
   },
+  { id: "actions", cell: ({ row }) => <Actions id={row.original.id} /> },
 ]
