@@ -15,6 +15,13 @@
       "when": 1721638159033,
       "tag": "0001_natural_sharon_carter",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1721835452469,
+      "tag": "0002_easy_korvac",
+      "breakpoints": true
     }
   ]
 }
