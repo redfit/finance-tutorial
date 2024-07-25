@@ -1,12 +1,12 @@
 import { create } from "zustand"
 
-type NewAccount = {
+type NewTransaction = {
   isOpen: boolean
   onOpen: () => void
   onClose: () => void
 }
 
-export const useNewAccount = create<NewAccount>((set) => ({
+export const useNewTransaction = create<NewTransaction>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
