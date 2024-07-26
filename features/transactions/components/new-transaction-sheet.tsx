@@ -24,7 +24,9 @@ const formSchema = insertTransactionSchema.omit({ id: true })
 type FormValues = z.input<typeof formSchema>
 
 export const NewTransactionSheet = () => {
+  const { isOpen, onClose } = useNewTransaction()
   const createMutation = useCreateTransaction()
+
   const categoryQuery = useGetCategories()
   const categoryMutation = useCreateCategory()
   const onCreateCategory = (name: string) =>
@@ -46,7 +48,6 @@ export const NewTransactionSheet = () => {
     value: account.id,
   }))
 
-  const { isOpen, onClose } = useNewTransaction()
   const isPending =
     createMutation.isPending ||
     categoryMutation.isPending ||
