@@ -52,6 +52,7 @@ const app = new Hono()
           amount: transactions.amount,
           account: accounts.name,
           accountId: transactions.accountId,
+          notes: transactions.notes,
         })
         .from(transactions)
         .innerJoin(accounts, eq(transactions.accountId, accounts.id))
@@ -92,6 +93,7 @@ const app = new Hono()
           payee: transactions.payee,
           amount: transactions.amount,
           accountId: transactions.accountId,
+          notes: transactions.notes,
         })
         .from(transactions)
         .innerJoin(accounts, eq(transactions.accountId, accounts.id))
