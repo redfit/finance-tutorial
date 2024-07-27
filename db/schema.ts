@@ -30,7 +30,7 @@ export const insertCategorySchema = createInsertSchema(categories)
 
 export const transactions = pgTable("transactions", {
   id: text("id").primaryKey(),
-  amount: integer("plaid_id").notNull(),
+  amount: integer("amount").notNull(),
   payee: text("payee").notNull(),
   notes: text("notes"),
   date: timestamp("date", { mode: "date" }).notNull(),
