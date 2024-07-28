@@ -31,7 +31,7 @@ export function calculatePercentageChange(current: number, previous: number) {
 }
 
 export function fillMissingDays(
-  activeDays: { date: Date; income: number; expense: number }[],
+  activeDays: { date: Date; income: number; expenses: number }[],
   startDate: Date,
   endDate: Date,
 ) {
@@ -46,13 +46,14 @@ export function fillMissingDays(
 
   const transactionByDay = allDays.map((day) => {
     const found = activeDays.find((d) => isSameDay(d.date, day))
+
     if (found) {
       return found
     } else {
       return {
         date: day,
         income: 0,
-        expense: 0,
+        expenses: 0,
       }
     }
   })

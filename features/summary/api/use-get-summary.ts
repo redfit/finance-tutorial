@@ -40,7 +40,7 @@ export const useGetSummary = () => {
         days: data.days.map((day) => ({
           ...day,
           income: onvertAmountFromMiliunits(day.income),
-          expenses: onvertAmountFromMiliunits(day.expense),
+          expenses: onvertAmountFromMiliunits(day.expenses),
         })),
       }
     },
