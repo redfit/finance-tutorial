@@ -111,7 +111,7 @@ const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
             Import Transactions
           </CardTitle>
           <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
-            <Button onClick={onCancel} size="sm" className="w-full lg:x-auto">
+            <Button onClick={onCancel} size="sm" className="w-full lg:mx-auto">
               Cancel
             </Button>
             <Button
